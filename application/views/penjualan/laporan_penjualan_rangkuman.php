@@ -62,25 +62,36 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Laporan Penjualan Rangkuman</title>
-	<link rel="stylesheet" href="assets/laporan/custom_laporan.css">
-    <body>
-
+	<style>
+		body { font-family: Arial; padding: 20px; }
+		.float-right { float: right; }
+		.clearfix { clear: both; }
+		.text-center { text-align: center; }
+		.text-right { text-align: right; }
+		.lh-150 { line-height: 1.5; }
+		.lh-200 { line-height: 2; }
+		.mt-5 { margin-top: 50px; }
+		h3 { background: linear-gradient(135deg, #2c5f8d, #3d7aaf); color: white; padding: 15px; border-radius: 5px; }
+		table.penilaian { border-collapse: collapse; width: 100%; margin: 20px 0; }
+		table.penilaian th { background: linear-gradient(135deg, #2c5f8d, #3d7aaf); color: white; padding: 10px; }
+		table.penilaian td { padding: 8px; border: 1px solid #ddd; }
+		table.penilaian tr:nth-child(even) { background: #f8f9fa; }
+		.data-kosong { text-align: center; padding: 30px; background: #fff3cd; border: 2px dashed #ffc107; border-radius: 5px; color: #856404; margin: 20px 0; }
+	</style>
 </head>
+<body>
 
-	 <!-- Text Lampiran -->
-    <div class="col-6 float-right lh-150">
-        <table>
+	<!-- Text Lampiran -->
+    <div style="float: right; width: 50%; font-size: 9pt; margin-bottom: 15px;">
+        <table style="width: 100%;">
 			<tr>
-				<td class="align-top lh-150" valign="top">
+				<td style="vertical-align: top; width: 35%; font-weight: bold;">
 					Lampiran Penjualan Rangkuman :
 				</td>
-				<td class="lh-150">
+				<td style="line-height: 1.4;">
 					Dinas Penanaman Modal Dan
 					<br>Perizinan Terpadu Satu Pintu
 					<br>Nomor : 19950101/SIPA.16.10/2019/2006
@@ -90,8 +101,7 @@
 		</table>
     </div>
 
-     <div class="clearfix"></div>
-    <!-- /Text Lampiran -->
+    <div class="clearfix"></div>
 
     <!-- Judul --> 
     <h3 class="text-center lh-200">
@@ -99,6 +109,11 @@
         <br>APOTEK DINAR MAS INDRALAYA
     </h3>
 
+	<br>
+	<br>
+	<br>
+	<br>
+	
     <!-- Tabel --> 
     <table width="100%" border="0">
         <tr>
@@ -108,11 +123,11 @@
         <?php 
 			if ($ket_pegawai == 1) {
 				$oke = 'Wiranti Anggraini, S.Farm., Apt';
-				} else if ($ket_pegawai == 2) {
+			} else if ($ket_pegawai == 2) {
 				$oke = 'Tasya Aulia S.Farm';
-				}else if ($ket_pegawai == 3){
+			} else if ($ket_pegawai == 3){
 				$oke = 'Wahyu';
-				}else{
+			} else {
 				$oke = 'Semua';  
 			}
 		?>
@@ -129,17 +144,14 @@
             <td> : 0877-9641-8116</td>
         </tr>
     </table>
-    <!-- akhir tabel -->
-	
+
 	<div class="separator"></div>
-	</div>
-	<?php 
-		if($status == "kosong") {
-	 ?>
+	
+	<?php if($status == "kosong") { ?>
 	 	<div class="data-kosong">
 	 	    Tidak terdapat data penjualan dengan kriteria tersebut
 	 	</div>
-	<?php } else {?>
+	<?php } else { ?>
 
 	<!-- Tabel Unsur Yang Dinilai -->
     <table class="penilaian" width="100%" border="1" cellspacing='0'>
@@ -150,11 +162,11 @@
             <th class="text-center">Pegawai</th>
             <th class="text-center">Total</th>
         </tr>
-         <?php 
-				$id_pjl = 1;
-				$total = 0;
-				foreach($rows->result_array() as $data_pjl ) {
-					$total = $total + $data_pjl['total_penjualan'];
+        <?php 
+			$id_pjl = 1;
+			$total = 0;
+			foreach($rows->result_array() as $data_pjl ) {
+				$total = $total + $data_pjl['total_penjualan'];
 		?>
         <tr>
             <td class="text-center"><?php echo $id_pjl++; ?></td>
@@ -169,7 +181,6 @@
 			<td class="text-right">Rp <?php echo number_format($total); ?></td>
 		</tr>
     </table>
-    <!-- /tabel unsur yang dinilai -->
     <?php } ?>
 
     <table width="100%" class="mt-5">
@@ -192,6 +203,6 @@
             </td>
         </tr>
     </table>
-    <!-- /tabel TTD -->
+
 </body>
 </html>

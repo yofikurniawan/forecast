@@ -1,192 +1,211 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="id">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<style>
-		.tabel-nama-apotek-nopenjualan {
-			width: 100%;
-			font-size: 7px;
-		}
+<meta charset="UTF-8">
+<style>
+    /* UKURAN STRUK THERMAL 80mm */
+    body {
+		width: 80mm;
+		max-width: 80mm;
+		margin: 0 auto;
+		padding: 2mm;
+		font-size: 3mm; /* 3mm ≈ 11px */
+	}
 
-		body {
-			font-family: arial, sans-serif;
-			font-size: 10px;
-		}
-
-		.tabel-nama-apotek-nopenjualan td {
-			width: 70%;
-		}
-
-		.tabel-nama-apotek-nopenjualan .nama_apotek {
-			font-weight: bold;
-		}
-
-		.tabel-nama-apotek-nopenjualan .nopenjualan {
-			font-weight: bold;
-			text-align: center;
-			vertical-align: middle;
-			padding: 3px;
-			width: 30%;
-		}
-
-		.tabel-data-penjualan .isi {
-			padding: 0 3px;
-		}
-
-		.data-penjualan {
-			border-bottom: 1px dotted #5c5c5c;
-		}
-
-		.data-barang {
-			border-bottom: 1px dashed #5c5c5c;
-		}
-
-		.tabel-data-barang {
-			width: 100%;
-		}
-
-		.tabel-data-barang td {
-			text-align: center;
-			padding: 0 2px;
-			vertical-align: middle;
-		}
-
-		.tabel-data-barang .nama_obat {
-			width: 40%;
-		}
-
-		.tabel-data-barang .jml_obat {
-			width: 5%;
-		}
-
-		.tabel-data-barang .sat_obat {
-			width: 15%;
-		}
-
-		.tabel-data-barang .hrg_obat {
-			width: 17%;
-		}
-
-		.tabel-data-barang .subt_obat {
-			width: 23%;
-		}
-
-		.tabel-data-barang .baris-total td,
-		.tabel-data-barang .baris-tunai td,
-		.tabel-data-barang .baris-kembali td {
-			text-align: right;
-		}
-
-		.tabel-data-barang .baris-total td {
-			padding-top: 3px;
-		}
-
-		.tabel-data-barang .baris-total td {
-			border-top: 1px dotted #5c5c5c;
-		}
-
-		.terimakasih {
-			font-size: 3px;
-			text-align: center;
-			padding: 4px;
-		}
-
-	</style>
-	<title>Penjualan Product </title>
+    
+    /* HEADER */
+    .header {
+        text-align: center;
+        margin-bottom: 5px;
+    }
+    
+    .nama-toko {
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 2px;
+    }
+    
+    .alamat {
+        font-size: 10px;
+        margin-bottom: 3px;
+    }
+    
+    /* GARIS */
+    .garis {
+        border-top: 1px dashed #000;
+        margin: 5px 0;
+    }
+    
+    .garis-tebal {
+        border-top: 2px solid #000;
+        margin: 5px 0;
+    }
+    
+    /* TABEL SEDERHANA */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 3px 0;
+    }
+    
+    td {
+        padding: 2px 0;
+        vertical-align: top;
+    }
+    
+    /* TABEL BARANG */
+    .tabel-barang td:nth-child(1) { width: 50%; }  /* nama */
+    .tabel-barang td:nth-child(2) { width: 15%; text-align: center; } /* qty */
+    .tabel-barang td:nth-child(3) { width: 20%; text-align: right; } /* harga */
+    .tabel-barang td:nth-child(4) { width: 15%; text-align: right; } /* subtotal */
+    
+    /* HEADER BARANG */
+    .header-barang {
+        background: #f0f0f0;
+        font-weight: bold;
+        border-bottom: 1px solid #000;
+    }
+    
+    /* TOTAL */
+    .total {
+        font-weight: bold;
+    }
+    
+    .jumlah {
+        text-align: right;
+        font-weight: bold;
+        color: #000;
+    }
+    
+    /* FOOTER */
+    .footer {
+        text-align: center;
+        margin-top: 10px;
+        font-size: 10px;
+    }
+    
+    .terimakasih {
+        font-size: 12px;
+        font-weight: bold;
+        margin: 5px 0;
+    }
+</style>
 </head>
-
 <body>
-	<page backleft="-10px" backright="-10px" backtop="-16px" backbottom="-16px" style="font-size: 6px;">
-		<page_header class="page_header">
 
-		</page_header>
-		<page_footer>
-		</page_footer>
-		<div class="page-content page-nota-penjualan">
-			<div class="nama-apotek-nopenjualan">
-				<table class="tabel-nama-apotek-nopenjualan">
-					<tr>
-						<td>
-							<span class="nama_apotek">APOTEK DINAR MAS</span><br>
-							Jl. Tasik, LK II RT.05 N0.19, KeL. Indralaya Mulya, Kec. Indralaya, Kab. Ogan Ilir
-							Indralaya 30862 <br>
-							(Telp) 0877-9641-8116
-						</td>
-						<td class="nopenjualan">
-							<?php
-                        $oke1 = $this->uri->segment(3);
-                        $oke2 = $this->uri->segment(4);
-                        $oke3 = $this->uri->segment(5);
-                        $no_pjl = $oke1.'/'.$oke2.'/'.$oke3;
-                        ?>
-							NOTA PENJUALAN <br> <?= $no_pjl; ?>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<div class="data-penjualan">
-				<table class="tabel-data-penjualan">
-					<?php foreach ($user->result() as $key => $data) :?>
-					<tr>
-						<td class="isi tanggal">
-							tgl : [<?php echo tgl_indo($data->tgl_penjualan); ?>]
-						</td>
-						<td>/</td>
-						<td class="isi nama-pegawai">
-							kasir : <?= $data->nama_peg ?>
-						</td>
-					</tr>
-					<?php endforeach; ?>
-				</table>
-			</div>
-			<div class="data-barang">
-				<table class="tabel-data-barang">
-					<?php foreach ($penjualan->result() as $key => $data_dpjl) :?>
-					<tr>
-						<td align="left" class="nama_obat">
-							<?= $data_dpjl->nm_obat ?>
-						</td>
-						<td class="jml_obat">
-							<?php echo $data_dpjl->jml_jual; ?>
-						</td>
-						<td class="sat_obat">
-							<?php echo $data_dpjl->sat_jual ?>
-						</td>
-						<td align="right" class="hrg_obat">
-							<?php echo $data_dpjl->hrg_jual ?>
-						</td>
-						<td align="right" class="subt_obat">
-							<?php echo $data_dpjl->subtotal ?>
-						</td>
-					</tr>
-					<?php endforeach; ?>
-					<tr class="baris-total">
-						<td colspan="4">Total :</td>
-						<td class="total">
-							<?php echo $data->total_penjualan ?>
-						</td>
-					</tr>
+<!-- HEADER -->
+<div class="header">
+    <div class="nama-toko">APOTEK DINAR MAS</div>
+	<br>
+    <div class="alamat">
 
-					<tr class="baris-tunai">
-						<td colspan="4">Tunai :</td>
-						<td class="tunai">
-							<?php echo $data->tunai ?>
-						</td>
-					</tr>
-					<tr class="baris-kembali">
-						<td colspan="4">Kembali :</td>
-						<td class="kembali">
-							<?php echo $data->kembali ?>
-						</td>
-					</tr>
-				</table>
-			</div>
-			<div class="terimakasih">
-				TERIMA KASIH, SEMOGA OBAT YANG DIBELI DAPAT BERMANFAAT
-			</div>
-		</div>
-	</page>
+        Jl. Tasik, LK II RT.05 No.19<br>
+        Indralaya Mulya – Ogan Ilir<br>
+        Telp: 0877-9641-8116 <br>
+    </div>
+	<br>
+	<br>
+	<br>
+    <div style="font-size: 10px;"><?= date('d/m/Y H:i:s') ?></div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+	<br>
+
+<div class="garis-tebal"></div>
+<br>
+
+<!-- NOMOR STRUK -->
+<div style="text-align: center; background: #f0f0f0; padding: 3px; margin: 5px 0;">
+    <strong>
+    <?php
+        $oke1 = $this->uri->segment(3);
+        $oke2 = $this->uri->segment(4);
+        $oke3 = $this->uri->segment(5);
+        echo 'NO: ' . $oke1.'/'.$oke2.'/'.$oke3;
+    ?>
+    </strong>
+</div>
+	<br>
+	<br>
+
+<div class="garis"></div>
+
+<!-- INFO TRANSAKSI -->
+<?php foreach ($user->result() as $data) : ?>
+	<br>
+<table>
+    <tr>
+	
+
+        <td style="width: 30%;">Tanggal</td>
+        <td>: <?= tgl_indo($data->tgl_penjualan); ?></td>
+    </tr>
+    <tr>
+        <td>Kasir</td>
+        <td>: <?= $data->nama_peg ?></td>
+    </tr>
+</table>
+<?php endforeach; ?>
+
+<div class="garis"></div>
+
+<!-- HEADER DAFTAR BARANG -->
+<table class="header-barang">
+    <tr>
+        <td>BARANG</td>
+        <td style="text-align: center;">QTY</td>
+        <td style="text-align: right;">HARGA</td>
+        <td style="text-align: right;">SUBTOTAL</td>
+    </tr>
+</table>
+
+<!-- DAFTAR BARANG -->
+<table class="tabel-barang">
+    <?php foreach ($penjualan->result() as $row) : ?>
+    <tr>
+        <td><?= $row->nm_obat ?></td>
+        <td><?= $row->jml_jual ?></td>
+        <td><?= number_format($row->hrg_jual, 0, ',', '.') ?></td>
+        <td><?= number_format($row->subtotal, 0, ',', '.') ?></td>
+    </tr>
+    <?php endforeach; ?>
+</table>
+
+<div class="garis-tebal"></div>
+
+<!-- TOTAL PEMBAYARAN -->
+<table style="margin: 8px 0;">
+    <tr class="total">
+        <td>TOTAL</td>
+        <td class="jumlah">Rp <?= number_format($data->total_penjualan, 0, ',', '.') ?></td>
+    </tr>
+    <tr>
+        <td>TUNAI</td>
+        <td class="jumlah">Rp <?= number_format($data->tunai, 0, ',', '.') ?></td>
+    </tr>
+    <tr class="total">
+        <td>KEMBALI</td>
+        <td class="jumlah">Rp <?= number_format($data->kembali, 0, ',', '.') ?></td>
+    </tr>
+</table>
+
+<div class="garis-tebal"></div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <div class="terimakasih">TERIMA KASIH</div>
+	<br>
+
+    <div style="font-weight: bold; margin-bottom: 5px;">SEMOGA LEKAS SEMBUH</div>
+	<br>
+    <div style="font-size: 9px; color: #666;">
+        * Struk ini sebagai bukti pembayaran yang sah
+    </div>
+</div>
+
 </body>
 </html>

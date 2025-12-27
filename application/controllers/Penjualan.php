@@ -89,7 +89,7 @@ class Penjualan extends CI_Controller {
 		$data['user'] = $this->penjualan_m->laporan_penjualan_user($no_pjl);
 		$data['penjualan'] = $this->penjualan_m->laporan_penjualan($no_pjl);
 		$html = $this->load->view('penjualan/laporan_penjualan', $data, true);
-		$this->fungsi->PdfGenerator($html, 'barcode',  array(0, 0, 220, 200), 'portrait');
+		$this->fungsi->PdfGenerator($html, 'barcode',  array(0, 0, 320, 330), 'portrait');
 		//$this->load->view('laporan/lampiran'); 
 	}
 	//Hapus Data Penjualan Obat
